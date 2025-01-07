@@ -1,0 +1,32 @@
+# Plugin prefix
+prefix: '&8「&#635AA7C&#7D72B7h&#978BC7a&#B2A3D8t&#CCBCE8R&#E6D4F8e&#D8B8F8p&#C99CF7o&#BB80F7r&#AC64F6t&8」&7» '
+
+# Base Command Message
+base-command-color: '&7'
+base-command-help: '&7Use &c/chatreport help &7for command information.'
+
+# Help Command
+command-help-description: '&8 - &c/chatreport help &7- Displays the help menu'
+command-help-title: '&cAvailable Commands:'
+
+# Misc
+no-permission: '&cYou don''t have permission for that!'
+unknown-command: '&cUnknown command &4%input%&c.'
+invalid-command-usage: '&cInvalid command usage.'
+
+# Report Command Messages
+command-report-description: '&8 - &c/chatreport report &7- Reports a player with recent messages'
+command-report-usage: '&7Usage: &c/chatreport report <playername>'
+command-report-invalid-number: '&cPlease provide a valid number for the message count.'
+command-report-player-not-online: '&7User &4%player%&7 is not online.'
+command-report-no-messages: '&cNo recent messages found for the player.'
+command-report-success: '&7Your report has been &asuccessfully&7 sent!'
+user-already-reported: '&cThis player was already reported recently.'
+
+# Reload Command Messages
+command-reload-description: '&8 - &c/chatreport reload &7- Reloads the plugin'
+command-reload-usage: '&7Usage: &c/chatreport reload'
+command-reload-success: '&7Configuration and locale files were reloaded successfully.'
+
+# Version Command Messages
+command-version-description: '&8 - &c/chatreport version &7- Displays the version info for ChatReport'
