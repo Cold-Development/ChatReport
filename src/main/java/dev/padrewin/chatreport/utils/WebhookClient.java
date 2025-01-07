@@ -41,10 +41,10 @@ public class WebhookClient {
      * Sends a report to the configured webhook.
      *
      * @param reporterName Name of the player reporting.
-     * @param targetPlayer Player being reported.
+     * @param targetPlayerName Player being reported.
      * @param messages List of recent messages from the target player.
      */
-    public void sendReport(String reporterName, OfflinePlayer targetPlayer, List<String> messages) {
+    public void sendReport(String reporterName, String targetPlayerName, List<String> messages) {
         if (webhookUrl == null || webhookUrl.isEmpty()) {
             debug("Webhook URL is not configured.");
             return;
@@ -61,7 +61,7 @@ public class WebhookClient {
             JsonObject embed = new JsonObject();
 
             // Title with the reported player's name
-            embed.addProperty("title", targetPlayer.getName() + " - Report");
+            embed.addProperty("title", targetPlayerName + " - Report");
 
             // Set the color of the embed
             embed.addProperty("color", 0xFF0000); // Red color
@@ -80,7 +80,7 @@ public class WebhookClient {
                         .append(" (")
                         .append(serverName) // Add server name
                         .append(") ")
-                        .append(targetPlayer.getName()) // Add player name
+                        .append(targetPlayerName) // Add player name
                         .append(" » ")
                         .append(content) // Add the message content
                         .append("\n");
@@ -104,6 +104,7 @@ public class WebhookClient {
             e.printStackTrace();
         }
     }
+
 
 
     private void sendPayload(JsonObject payload) {
