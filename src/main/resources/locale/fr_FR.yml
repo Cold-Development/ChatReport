@@ -7,7 +7,7 @@ base-command-help: '&7Utilisez &c/chatreport help &7pour des informations sur le
 
 # Help Command
 command-help-description: '&8 - &c/chatreport help &7- Affiche le menu d''aide'
-command-help-title: '&cCommandes disponibles :'
+command-help-title: '&cCommandes Disponibles :'
 
 # Misc
 no-permission: '&cVous n''avez pas la permission de faire cela !'
@@ -15,12 +15,10 @@ unknown-command: '&cCommande inconnue &4%input%&c.'
 invalid-command-usage: '&cUtilisation invalide de la commande.'
 
 # Report Command Messages
-command-report-description: '&8 - &c/chatreport report &7- Signale un joueur avec ses messages récents'
-command-report-usage: '&7Utilisation : &c/chatreport report <nomdujoueur>'
-command-report-invalid-number: '&cVeuillez fournir un nombre valide pour le nombre de messages.'
-command-report-player-not-online: '&7L''utilisateur &4%player%&7 n''est pas en ligne.'
-command-report-no-messages: '&cAucun message récent trouvé pour ce joueur.'
-command-report-success: '&7Votre signalement a été &aenvoyé avec succès&7 !'
+command-report-description: '&8 - &c/chatreport report &7- Signale un joueur avec des messages récents'
+command-report-usage: '&7Utilisation : &c/chatreport report <nom-du-joueur>'
+command-report-no-messages: '&cAucun message récent trouvé pour le joueur.'
+command-report-success: '&7Votre signalement a été &aeffectué avec succès&7 !'
 user-already-reported: '&cCe joueur a déjà été signalé récemment.'
 
 # Reload Command Messages
