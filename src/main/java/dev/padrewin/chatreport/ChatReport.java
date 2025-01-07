@@ -30,7 +30,7 @@ public final class ChatReport extends ColdPlugin {
     private WebhookClient webhookClient;
 
     public ChatReport() {
-        super("Cold-Development", "ChatReport", 24248, null, LocaleManager.class, null);
+        super("Cold-Development", "ChatReport", 24399, null, LocaleManager.class, null);
         instance = this;
     }
 
