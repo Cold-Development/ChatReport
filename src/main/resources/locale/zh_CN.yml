@@ -1,0 +1,32 @@
+# Plugin prefix
+prefix: '&8「&#635AA7C&#7D72B7h&#978BC7a&#B2A3D8t&#CCBCE8R&#E6D4F8e&#D8B8F8p&#C99CF7o&#BB80F7r&#AC64F6t&8」&7» '
+
+# Base Command Message
+base-command-color: '&7'
+base-command-help: '&7使用 &c/chatreport help &7获取命令信息。'
+
+# Help Command
+command-help-description: '&8 - &c/chatreport help &7- 显示帮助菜单'
+command-help-title: '&c可用命令：'
+
+# Misc
+no-permission: '&c你没有权限这样做！'
+unknown-command: '&c未知命令 &4%input%&c。'
+invalid-command-usage: '&c命令使用无效。'
+
+# Report Command Messages
+command-report-description: '&8 - &c/chatreport report &7- 报告一名玩家及其最近的消息'
+command-report-usage: '&7用法：&c/chatreport report <玩家名称>'
+command-report-invalid-number: '&c请输入一个有效的消息数量。'
+command-report-player-not-online: '&7玩家 &4%player%&7 不在线。'
+command-report-no-messages: '&c未找到该玩家的最近消息。'
+command-report-success: '&7您的报告已成功发送！'
+user-already-reported: '&c该玩家最近已被举报。'
+
+# Reload Command Messages
+command-reload-description: '&8 - &c/chatreport reload &7- 重新加载插件'
+command-reload-usage: '&7用法：&c/chatreport reload'
+command-reload-success: '&7配置文件和语言文件已成功重新加载。'
+
+# Version Command Messages
+command-version-description: '&8 - &c/chatreport version &7- 显示 ChatReport 的版本信息'
