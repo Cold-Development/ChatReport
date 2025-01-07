@@ -1,9 +1,5 @@
 package dev.padrewin.chatreport.commands;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
-
 import dev.padrewin.chatreport.ChatReport;
 import dev.padrewin.chatreport.manager.CommandManager;
 import dev.padrewin.chatreport.manager.LocaleManager;
@@ -14,6 +10,10 @@ import dev.padrewin.chatreport.utils.WebhookClient;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
 
 public class ReportCommand extends BaseCommand {
 
@@ -34,38 +34,32 @@ public class ReportCommand extends BaseCommand {
         }
 
         String targetName = args[0];
-        Player target = Bukkit.getPlayer(targetName);
-
-        if (target == null || !target.isOnline()) {
-            plugin.getManager(LocaleManager.class).sendMessage(sender, "command-report-player-not-online");
-            return;
-        }
-
-        UUID targetId = target.getUniqueId();
-        int reportTimeout = SettingKey.REPORT_TIMEOUT.get(); // Timeout in seconds
-
-        // Verifică dacă jucătorul este deja raportat
-        if (ReportTracker.isReported(targetId)) {
-            plugin.getManager(LocaleManager.class).sendMessage(sender, "user-already-reported");
-            return;
-        }
-
-        List<String> messages = ChatLogger.getRecentMessages(target, SettingKey.DEFAULT_MESSAGE_COUNT.get());
-        if (messages.isEmpty()) {
+        if (!ChatLogger.hasMessages(targetName)) {
             plugin.getManager(LocaleManager.class).sendMessage(sender, "command-report-no-messages");
             return;
         }
 
+        int reportTimeout = SettingKey.REPORT_TIMEOUT.get(); // Timeout in seconds
+
+        // Verifică dacă jucătorul este deja raportat
+        if (ReportTracker.isReported(targetName)) {
+            plugin.getManager(LocaleManager.class).sendMessage(sender, "user-already-reported");
+            return;
+        }
+
+        List<String> messages = ChatLogger.getRecentMessages(targetName, SettingKey.DEFAULT_MESSAGE_COUNT.get());
+
         // Adaugă raportul în tracker
-        ReportTracker.addReport(targetId, reportTimeout);
+        ReportTracker.addReport(targetName, reportTimeout);
 
         WebhookClient webhookClient = plugin.getWebhookClient();
         String reporterName = sender instanceof Player ? sender.getName() : "Console";
 
-        webhookClient.sendReport(reporterName, target, messages);
+        webhookClient.sendReport(reporterName, targetName, messages);
 
         plugin.getManager(LocaleManager.class).sendMessage(sender, "command-report-success");
     }
+
 
 
     @Override
