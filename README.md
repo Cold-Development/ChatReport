@@ -5,9 +5,9 @@ ChatReport is a powerful and lightweight Minecraft plugin that allows players to
 <details>
 <summary>Here you can find some screenshots of this plugin.</summary>
   
+![image](https://github.com/user-attachments/assets/409260e3-6397-4d26-a3c9-f001e5947354)
 ![image](https://github.com/user-attachments/assets/ae1b6385-2f1c-4083-b2d4-83ff43529f78)
 ![image](https://github.com/user-attachments/assets/8fdb14e7-d4c8-48eb-813e-aac2c601824a)
-![image](https://github.com/user-attachments/assets/409260e3-6397-4d26-a3c9-f001e5947354)
 </details>
 
 
