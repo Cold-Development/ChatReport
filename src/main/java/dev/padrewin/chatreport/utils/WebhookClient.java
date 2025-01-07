@@ -11,6 +11,8 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import dev.padrewin.chatreport.ChatReport;
@@ -42,7 +44,7 @@ public class WebhookClient {
      * @param targetPlayer Player being reported.
      * @param messages List of recent messages from the target player.
      */
-    public void sendReport(String reporterName, Player targetPlayer, List<String> messages) {
+    public void sendReport(String reporterName, OfflinePlayer targetPlayer, List<String> messages) {
         if (webhookUrl == null || webhookUrl.isEmpty()) {
             debug("Webhook URL is not configured.");
             return;
@@ -69,15 +71,18 @@ public class WebhookClient {
             String serverName = ChatReport.getInstance().getConfig().getString("server-name", "server");
 
             for (String message : messages) {
-                String timeStamp = new SimpleDateFormat("yyyy-MM-dd - HH:mm:ss").format(new Date());
-                logBuilder.append("[")
-                        .append(timeStamp)
-                        .append("] (")
-                        .append(serverName)
+                // Split the message to extract timestamp and actual content
+                int closingBracketIndex = message.indexOf("]");
+                String timestamp = message.substring(0, closingBracketIndex + 1); // Extract timestamp
+                String content = message.substring(closingBracketIndex + 1).trim(); // Extract content
+
+                logBuilder.append(timestamp) // Add the timestamp
+                        .append(" (")
+                        .append(serverName) // Add server name
                         .append(") ")
-                        .append(targetPlayer.getName())
+                        .append(targetPlayer.getName()) // Add player name
                         .append(" » ")
-                        .append(message)
+                        .append(content) // Add the message content
                         .append("\n");
             }
 
@@ -99,6 +104,7 @@ public class WebhookClient {
             e.printStackTrace();
         }
     }
+
 
     private void sendPayload(JsonObject payload) {
         try {

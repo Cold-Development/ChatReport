@@ -12,6 +12,7 @@ import dev.padrewin.chatreport.utils.ChatLogger;
 import dev.padrewin.chatreport.utils.ReportTracker;
 import dev.padrewin.chatreport.utils.WebhookClient;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -34,12 +35,17 @@ public class ReportCommand extends BaseCommand {
         }
 
         String targetName = args[0];
-        Player target = Bukkit.getPlayer(targetName);
+        OfflinePlayer target = Bukkit.getOfflinePlayer(targetName);
 
-        if (target == null || !target.isOnline()) {
-            plugin.getManager(LocaleManager.class).sendMessage(sender, "command-report-player-not-online");
+        if (!target.hasPlayedBefore()) {
+            plugin.getManager(LocaleManager.class).sendMessage(sender, "command-report-player-never-joined");
             return;
         }
+
+        //if (target == null || !target.isOnline()) {
+        //    plugin.getManager(LocaleManager.class).sendMessage(sender, "command-report-player-not-online");
+        //    return;
+        //}
 
         UUID targetId = target.getUniqueId();
         int reportTimeout = SettingKey.REPORT_TIMEOUT.get(); // Timeout in seconds
@@ -50,7 +56,8 @@ public class ReportCommand extends BaseCommand {
             return;
         }
 
-        List<String> messages = ChatLogger.getRecentMessages(target, SettingKey.DEFAULT_MESSAGE_COUNT.get());
+        List<String> messages = ChatLogger.getRecentMessages(targetId, SettingKey.DEFAULT_MESSAGE_COUNT.get());
+
         if (messages.isEmpty()) {
             plugin.getManager(LocaleManager.class).sendMessage(sender, "command-report-no-messages");
             return;
