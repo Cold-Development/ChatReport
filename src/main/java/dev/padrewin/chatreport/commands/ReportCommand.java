@@ -49,11 +49,6 @@ public class ReportCommand extends BaseCommand {
 
         List<String> messages = ChatLogger.getRecentMessages(targetName, SettingKey.DEFAULT_MESSAGE_COUNT.get());
 
-        if (messages.isEmpty()) {
-            plugin.getManager(LocaleManager.class).sendMessage(sender, "command-report-no-messages");
-            return;
-        }
-
         // Adaugă raportul în tracker
         ReportTracker.addReport(targetName, reportTimeout);
 

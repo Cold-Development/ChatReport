@@ -17,8 +17,6 @@ invalid-command-usage: '&cInvalid command usage.'
 # Report Command Messages
 command-report-description: '&8 - &c/chatreport report &7- Reports a player with recent messages'
 command-report-usage: '&7Usage: &c/chatreport report <playername>'
-command-report-invalid-number: '&cPlease provide a valid number for the message count.'
-command-report-player-not-online: '&7User &4%player%&7 is not online.'
 command-report-no-messages: '&cNo recent messages found for the player.'
 command-report-success: '&7Your report has been &asuccessfully&7 sent!'
 user-already-reported: '&cThis player was already reported recently.'

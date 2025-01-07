@@ -7,26 +7,24 @@ base-command-help: '&7Folosește &c/chatreport help &7pentru informații despre 
 
 # Help Command
 command-help-description: '&8 - &c/chatreport help &7- Afișează meniul de ajutor'
-command-help-title: '&cComenzi disponibile:'
+command-help-title: '&cComenzi Disponibile:'
 
 # Misc
-no-permission: '&cNu ai permisiunea să faci asta!'
+no-permission: '&cNu ai permisiunea pentru asta!'
 unknown-command: '&cComandă necunoscută &4%input%&c.'
-invalid-command-usage: '&cUtilizare incorectă a comenzii.'
+invalid-command-usage: '&cUtilizare invalidă a comenzii.'
 
 # Report Command Messages
 command-report-description: '&8 - &c/chatreport report &7- Raportează un jucător cu mesaje recente'
-command-report-usage: '&7Utilizare: &c/chatreport report <numejucator>'
-command-report-invalid-number: '&cTe rog să introduci un număr valid pentru numărul de mesaje.'
-command-report-player-not-online: '&7Jucătorul &4%player%&7 nu este online.'
-command-report-no-messages: '&cNu s-au găsit mesaje recente pentru acest jucător.'
-command-report-success: '&7Raportul tău a fost trimis cu &asucces&7!'
+command-report-usage: '&7Utilizare: &c/chatreport report <nume-jucător>'
+command-report-no-messages: '&cNu s-au găsit mesaje recente pentru jucător.'
+command-report-success: '&7Raportul tău a fost &aînaintat cu succes&7!'
 user-already-reported: '&cAcest jucător a fost deja raportat recent.'
 
 # Reload Command Messages
-command-reload-description: '&8 - &c/chatreport reload &7- Reîncarcă pluginul'
+command-reload-description: '&8 - &c/chatreport reload &7- Reîncarcă plugin-ul'
 command-reload-usage: '&7Utilizare: &c/chatreport reload'
-command-reload-success: '&7Fișierele de configurare și de localizare au fost reîncărcate cu succes.'
+command-reload-success: '&7Fișierele de configurare și localizare au fost reîncărcate cu succes.'
 
 # Version Command Messages
 command-version-description: '&8 - &c/chatreport version &7- Afișează informațiile despre versiunea ChatReport'
