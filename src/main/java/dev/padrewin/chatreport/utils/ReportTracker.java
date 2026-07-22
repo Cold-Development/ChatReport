@@ -1,10 +1,11 @@
 package dev.padrewin.chatreport.utils;
 
-import java.util.WeakHashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ReportTracker {
 
-    private static final WeakHashMap<Object, Long> activeReports = new WeakHashMap<>();
+    private static final Map<Object, Long> activeReports = new ConcurrentHashMap<>();
 
     /**
      * Checks if a player is already reported (by name or UUID).

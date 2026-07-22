@@ -5,11 +5,16 @@ import dev.padrewin.chatreport.setting.SettingKey;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ChatLogger {
 
-    private static final Map<String, Deque<String>> playerMessages = new HashMap<>();
+    private static final Map<String, Deque<String>> playerMessages = new ConcurrentHashMap<>();
 
 
     /**
@@ -20,20 +25,19 @@ public class ChatLogger {
      */
     public static void logMessage(Player player, String message) {
         String playerName = player.getName();
-        playerMessages.putIfAbsent(playerName, new LinkedList<>());
-
-        Deque<String> messages = playerMessages.get(playerName);
+        Deque<String> messages = playerMessages.computeIfAbsent(playerName, key -> new ArrayDeque<>());
         int maxMessages = SettingKey.MAX_LOG_MESSAGES.get();
 
-        if (messages.size() >= maxMessages) {
-            messages.pollFirst(); // Elimină cel mai vechi mesaj
-        }
-
-        // Formatează mesajul
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         String formattedMessage = "[" + timestamp + "] " + message;
 
-        messages.addLast(formattedMessage);
+        synchronized (messages) {
+            if (messages.size() >= maxMessages) {
+                messages.pollFirst(); // Elimină cel mai vechi mesaj
+            }
+
+            messages.addLast(formattedMessage);
+        }
     }
 
 
@@ -45,19 +49,16 @@ public class ChatLogger {
      * @return A list of the most recent messages, or an empty list if no messages exist.
      */
     public static List<String> getRecentMessages(String playerName, int messageCount) {
-        Deque<String> messages = playerMessages.getOrDefault(playerName, new LinkedList<>());
-
-        List<String> recentMessages = new ArrayList<>();
-        int fromIndex = Math.max(0, messages.size() - messageCount);
-        int index = 0;
-
-        for (String msg : messages) {
-            if (index++ >= fromIndex) {
-                recentMessages.add(msg);
-            }
+        Deque<String> messages = playerMessages.get(playerName);
+        if (messages == null) {
+            return List.of();
         }
 
-        return recentMessages;
+        synchronized (messages) {
+            List<String> snapshot = new ArrayList<>(messages);
+            int fromIndex = Math.max(0, snapshot.size() - messageCount);
+            return new ArrayList<>(snapshot.subList(fromIndex, snapshot.size()));
+        }
     }
 
     public static boolean hasMessages(String playerName) {

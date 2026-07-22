@@ -5,7 +5,13 @@ import dev.padrewin.chatreport.ChatReport;
 import dev.padrewin.chatreport.manager.CommandManager;
 import dev.padrewin.chatreport.manager.LocaleManager;
 import dev.padrewin.chatreport.setting.SettingKey;
+import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Handles the commands for the root command.
@@ -53,7 +59,34 @@ public class Commander extends CommandHandler {
 
     @Override
     public void unknownCommand(CommandSender sender, String[] args) {
+        BaseCommand reportCommand = this.registeredCommands.get("report");
+        if (reportCommand != null && reportCommand.hasPermission(sender)) {
+            reportCommand.execute(this.plugin, sender, args);
+            return;
+        }
+
         this.plugin.getManager(LocaleManager.class).sendMessage(sender, "unknown-command", StringPlaceholders.of("input", args[0]));
     }
 
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        if (args.length == 1) {
+            List<String> completions = new ArrayList<>(super.onTabComplete(sender, command, alias, args));
+            for (String playerName : this.visiblePlayerNames(sender)) {
+                if (!completions.contains(playerName)) {
+                    completions.add(playerName);
+                }
+            }
+            return completions;
+        }
+
+        return super.onTabComplete(sender, command, alias, args);
+    }
+
+    private List<String> visiblePlayerNames(CommandSender sender) {
+        return Bukkit.getOnlinePlayers().stream()
+                .filter(player -> !(sender instanceof Player viewer) || viewer.canSee(player))
+                .map(Player::getName)
+                .toList();
+    }
 }

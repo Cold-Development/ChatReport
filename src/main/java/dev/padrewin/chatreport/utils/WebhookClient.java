@@ -12,10 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
-import dev.padrewin.chatreport.ChatReport;
 
 public class WebhookClient {
 
@@ -44,7 +41,7 @@ public class WebhookClient {
      * @param targetPlayerName Player being reported.
      * @param messages List of recent messages from the target player.
      */
-    public void sendReport(String reporterName, String targetPlayerName, List<String> messages) {
+    public void sendReport(String reporterName, String targetPlayerName, String serverName, List<String> messages) {
         if (webhookUrl == null || webhookUrl.isEmpty()) {
             debug("Webhook URL is not configured.");
             return;
@@ -68,8 +65,6 @@ public class WebhookClient {
 
             // Build the log-like message
             StringBuilder logBuilder = new StringBuilder("```log\n");
-            String serverName = ChatReport.getInstance().getConfig().getString("server-name", "server");
-
             for (String message : messages) {
                 // Split the message to extract timestamp and actual content
                 int closingBracketIndex = message.indexOf("]");

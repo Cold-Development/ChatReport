@@ -20,6 +20,8 @@ command-report-usage: '&7Usage: &c/chatreport report <playername>'
 command-report-no-messages: '&cNo recent messages found for the player.'
 command-report-success: '&7Your report has been &asuccessfully&7 sent!'
 user-already-reported: '&cThis player was already reported recently.'
+staff-online-block-report: "&7You cannot report players while a staff member is &aonline &fon the server."
+staff-online-confirm-required: "&7At least one staff member is &aonline &7on the server. Are you sure you want to send this report? &7Use &c/chatreport report <player> confirm"
 
 # Reload Command Messages
 command-reload-description: '&8 - &c/chatreport reload &7- Reloads the plugin'

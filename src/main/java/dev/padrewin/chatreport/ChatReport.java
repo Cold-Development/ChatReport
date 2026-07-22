@@ -4,7 +4,6 @@ import dev.padrewin.chatreport.listeners.ChatListener;
 import dev.padrewin.colddev.ColdPlugin;
 import dev.padrewin.colddev.config.ColdSetting;
 import dev.padrewin.colddev.manager.Manager;
-import dev.padrewin.colddev.manager.PluginUpdateManager;
 import dev.padrewin.chatreport.manager.CommandManager;
 import dev.padrewin.chatreport.manager.LocaleManager;
 import dev.padrewin.chatreport.setting.SettingKey;
@@ -39,8 +38,6 @@ public final class ChatReport extends ColdPlugin {
         instance = this;
 
         getServer().getPluginManager().registerEvents(new ChatListener(), this);
-
-        getManager(PluginUpdateManager.class);
 
         // Initialize WebhookClient
         webhookClient = new WebhookClient(getConfig());

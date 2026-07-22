@@ -2,19 +2,19 @@ package dev.padrewin.chatreport.listeners;
 
 import dev.padrewin.chatreport.utils.ChatLogger;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 public class ChatListener implements Listener {
 
     /**
-     * Listens to chat messages sent by players and logs them using ChatLogger.
-     *
-     * @param event The AsyncPlayerChatEvent containing player chat data.
+     * Logs only messages that were NOT cancelled by other plugins.
+     * Uses HIGH priority to run after anti-spam plugins.
      */
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onPlayerChat(AsyncPlayerChatEvent event) {
-        // Log the message if it is sent by a player
+        // Doar mesajele care NU au fost anulate ajung aici
         ChatLogger.logMessage(event.getPlayer(), event.getMessage());
     }
 }
