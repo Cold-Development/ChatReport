@@ -4,7 +4,8 @@ import dev.padrewin.chatreport.utils.ChatLogger;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
+import io.papermc.paper.event.player.AsyncChatEvent;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 
 public class ChatListener implements Listener {
 
@@ -13,8 +14,8 @@ public class ChatListener implements Listener {
      * Uses HIGH priority to run after anti-spam plugins.
      */
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
-    public void onPlayerChat(AsyncPlayerChatEvent event) {
+    public void onPlayerChat(AsyncChatEvent event) {
         // Doar mesajele care NU au fost anulate ajung aici
-        ChatLogger.logMessage(event.getPlayer(), event.getMessage());
+        ChatLogger.logMessage(event.getPlayer(), PlainTextComponentSerializer.plainText().serialize(event.message()));
     }
 }

@@ -42,15 +42,15 @@ public final class ChatReport extends ColdPlugin {
         // Initialize WebhookClient
         webhookClient = new WebhookClient(getConfig());
 
-        String name = getDescription().getName();
+        String name = getPluginMeta().getName();
         getLogger().info("");
         getLogger().info(ANSI_CHINESE_PURPLE + "  ____ ___  _     ____  " + ANSI_RESET);
         getLogger().info(ANSI_PINK + " / ___/ _ \\| |   |  _ \\" + ANSI_RESET);
         getLogger().info(ANSI_CHINESE_PURPLE + "| |  | | | | |   | | | |" + ANSI_RESET);
         getLogger().info(ANSI_PINK + "| |__| |_| | |___| |_| |" + ANSI_RESET);
         getLogger().info(ANSI_CHINESE_PURPLE + " \\____\\___/|_____|____/ " + ANSI_RESET);
-        getLogger().info("    " + ANSI_GREEN + name + ANSI_RED + " v" + getDescription().getVersion() + ANSI_RESET);
-        getLogger().info(ANSI_PURPLE + "    Author(s): " + ANSI_PURPLE + getDescription().getAuthors().get(0) + ANSI_RESET);
+        getLogger().info("    " + ANSI_GREEN + name + ANSI_RED + " v" + getPluginMeta().getVersion() + ANSI_RESET);
+        getLogger().info(ANSI_PURPLE + "    Author(s): " + ANSI_PURPLE + getPluginMeta().getAuthors().get(0) + ANSI_RESET);
         getLogger().info(ANSI_AQUA + "    (c) Cold Development ❄" + ANSI_RESET);
         getLogger().info("");
 

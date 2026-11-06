@@ -71,7 +71,7 @@ public class ReportCommand extends BaseCommand {
         String reporterName = sender instanceof Player ? sender.getName() : "Console";
         String serverName = plugin.getConfig().getString("server-name", "server");
 
-        Bukkit.getScheduler().runTaskAsynchronously(plugin, () ->
+        plugin.getScheduler().runTaskAsync(() ->
                 webhookClient.sendReport(reporterName, targetName, serverName, messages));
 
         plugin.getManager(LocaleManager.class).sendMessage(sender, "command-report-success");
